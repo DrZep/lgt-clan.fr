@@ -1,6 +1,61 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿html {
+    /*background: url("../images/design/body-bg.png") 50% 100% repeat-x #B5B5B5;*/
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.clear {
+    clear: both;
+}
+
+body {
+    background-color: #fff;
+    color: #333;
+    /*font-size: .85em;*/
+    font-family: Arial, "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.contain {
+    min-height: 100%;
+    position: relative;
+}
+
+/* main layout
+----------------------------------------------------------*/
+.content-wrapper {
+    margin: 0 auto;
+    max-width: 1000px;
+}
+
+#body {
+    /*background: url("../images/design/body-bg.png") 50% 0% repeat-x #B5B5B5;*/
+    background: #fff;
+    clear: both;
+    padding-bottom: 300px;
+    padding-top: 150px;
+}
+
+footer {
+    clear: both;
+    background: url("../images/design/footer-bg.png");
+    font-size: .8em;
+    /*height: 50px;*/
+    padding: 10px 0;
+    border-top: 1px solid #ffb419;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 103px; /* Height of the footer */
+}
+
+footer p {
+    text-align: center;
+    font-size: 1.5em;
 }
 
 /* Wrapping element */
