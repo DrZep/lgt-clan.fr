@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html id="login">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,42 +16,13 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
-<body>
-    <div class="contain">
-        <header>
-            <nav class="navbar navbar-inverse navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <p class="brand site-title"><a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">lgt.clan.fr</a></p>
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav menu-header navbar-nav" id="menu">
-                            <li><a asp-area="" asp-controller="Home" asp-action="Index">Personnage</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="About">Clan</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="About">Documents</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="About">Gallerie</a></li>
-                            <li><a asp-area="" asp-controller="Home" asp-action="Contact">Admin</a></li>
-                            @await Html.PartialAsync("_LoginPartial")
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </header>
-        <div id="body">
+<body id="login">
+    <div class="container-fluid">
+        <div id="body-login">
             <div class="container body-content">
                 @RenderBody()
             </div>
         </div>
-        @*<hr />
-        <footer>
-            <p>&copy; 2018 - lgt.clan.fr</p>
-        </footer>*@
     </div>
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>

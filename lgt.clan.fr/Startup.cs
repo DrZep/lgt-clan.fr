@@ -12,6 +12,8 @@ using lgt.clan.fr.Data;
 using lgt.clan.fr.Models;
 using lgt.clan.fr.Services;
 using lgt.clan.fr.Settings;
+using lgt.clan.fr.Helpers;
+using lgt.clan.fr.Data.Interfaces;
 
 namespace lgt.clan.fr
 {
@@ -33,18 +35,23 @@ namespace lgt.clan.fr
 
             services.Configure<BungieApi>(Configuration.GetSection("BungieApi"));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
-                .AddDefaultTokenProviders();
+            services.AddIdentity<ApplicationUser, ApplicationRole>(config =>
+            {
+                config.SignIn.RequireConfirmedEmail = false;
+            })
+                .AddErrorDescriber<CustomIdentityErrorDescriber>()
+                .AddEntityFrameworkStores<ApplicationDbContext>();
 
             // Add application services.
             services.AddTransient<IEmailSender, EmailSender>();
 
             services.AddMvc();
+            services.AddScoped<IDbInitializer, DbInitializer>();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IDbInitializer dbInitializer)
         {
             if (env.IsDevelopment())
             {
@@ -67,6 +74,9 @@ namespace lgt.clan.fr
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //DataSeeder.SeedData(app);
+            dbInitializer.Initalize();
         }
     }
 }

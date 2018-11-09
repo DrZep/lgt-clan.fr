@@ -8,9 +8,15 @@ using lgt.clan.fr.Models;
 using System.Net.Http;
 using lgt.clan.fr.Settings;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authorization;
+using lgt.clan.fr.Helpers;
+using lgt.clan.fr.Models.Destiny2Bungie;
+using lgt.clan.fr.Models.Destiny2Bungie.Profil;
+using lgt.clan.fr.Models.Destiny2Bungie.Character;
 
 namespace lgt.clan.fr.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private readonly IOptions<BungieApi> _BungieApi;
@@ -20,8 +26,22 @@ namespace lgt.clan.fr.Controllers
             _BungieApi = BungieApi;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            string userName = User.Identity.Name;
+
+            string destinyMembershipId = await Destiny2BungieHelper.GetDestiny2MembershipIdByGamerTag(userName, _BungieApi.Value.apiKey);
+
+            Profile profile = new Profile();
+            profile = await Destiny2BungieHelper.GetDestiny2ProfilById(profile, destinyMembershipId, _BungieApi.Value.apiKey);
+            List<Character> characters = new List<Character>();
+            characters = await Destiny2BungieHelper.GetDestiny2CaracteresById(profile, characters, _BungieApi.Value.apiKey);
+
+            foreach(var charac in characters)
+            {
+                await Destiny2BungieHelper.GetDestiny2ActivitiesDoneByCharacterId(charac, _BungieApi.Value.apiKey);
+            }
+
             return View();
         }
 

@@ -231,8 +231,21 @@ button.btn-link:hover {
         }
 
 
+/**** LOGIN ****/
 
+body#login {
+    background:url(../images/design/background-body-login.jpg) no-repeat center center #000;
+    /*background-repeat:no-repeat;*/
+    color:#fff;
+}
 
+#body-login {
+    clear: both;
+    padding-bottom: 300px;
+    padding-top: 150px;
+}
+
+html#login {background:none; }
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {
