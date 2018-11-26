@@ -1,5 +1,6 @@
 ﻿using lgt.clan.fr.Models.Destiny2Bungie;
 using lgt.clan.fr.Models.Destiny2Bungie.Character;
+using lgt.clan.fr.Models.Destiny2Bungie.Clan;
 using lgt.clan.fr.Models.Destiny2Bungie.Profil;
 using lgt.clan.fr.Settings;
 using Microsoft.Extensions.Options;
@@ -58,7 +59,6 @@ namespace lgt.clan.fr.Helpers
                 {
                     Character character = new Character();
                     client.DefaultRequestHeaders.Add("X-API-Key", apiKey);
-                    //string link = apiSite + $"/Destiny2/{membershipType}/Profile/{profile.Data.UserInfo.membershipId}/Character/{id}/?components=100,200";
                     string link = apiSite + $"/Destiny2/{membershipType}/Profile/{profile.Data.UserInfo.membershipId}/Character/{id}/?components=100,200";
 
                     var response = await client.GetAsync(link);
@@ -67,30 +67,47 @@ namespace lgt.clan.fr.Helpers
 
                     character = root.Response.character;
                     characters.Add(character);
-                    //await Context.Channel.SendMessageAsync("", embed: embed);
                 }
             }
 
             return characters;
         }
-        public static async Task<Character> GetDestiny2ActivitiesDoneByCharacterId(Character characters, string apiKey)
+        public static async Task<Group> GetDestiny2ClanByUser(Profile profile, Group group, string apiKey)
         {
-                using (var client = new HttpClient())
-                {
-                    client.DefaultRequestHeaders.Add("X-API-Key", apiKey);
-                    //string link = apiSite + $"/Destiny2/{membershipType}/Profile/{profile.Data.UserInfo.membershipId}/Character/{id}/?components=100,200";
-                    string link = apiSite + $"/Destiny2/{membershipType}/Account/{characters.data.MembershipId}/Character/{characters.data.CharacterId}/Stats/Activities/";
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("X-API-Key", apiKey);
+                string link = apiSite + $"/GroupV2/User/{membershipType}/{profile.Data.UserInfo.membershipId}/0/1/";
 
-                    var response = await client.GetAsync(link);
-                    var content = await response.Content.ReadAsStringAsync();
-                    Models.Destiny2Bungie.Character.Root root = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.Destiny2Bungie.Character.Root>(content);
+                var response = await client.GetAsync(link);
+                var content = await response.Content.ReadAsStringAsync();
+                Models.Destiny2Bungie.Clan.Root root = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.Destiny2Bungie.Clan.Root>(content);
 
-                    characters = root.Response.character;
-                    //await Context.Channel.SendMessageAsync("", embed: embed);
-                }
+                group = root.Response.Results.SingleOrDefault().group;
+            }
 
-            return characters;
+            return group;
         }
+
+        //https://www.bungie.net/Platform/GroupV2/User/{membershipType}/{membershipId}/0/1/
+        //public static async Task<Character> GetDestiny2ActivitiesDoneByCharacterId(Character characters, string apiKey)
+        //{
+        //        using (var client = new HttpClient())
+        //        {
+        //            client.DefaultRequestHeaders.Add("X-API-Key", apiKey);
+        //            //string link = apiSite + $"/Destiny2/{membershipType}/Profile/{profile.Data.UserInfo.membershipId}/Character/{id}/?components=100,200";
+        //            string link = apiSite + $"/Destiny2/{membershipType}/Account/{characters.data.MembershipId}/Character/{characters.data.CharacterId}/Stats/Activities/?mode=63";
+
+        //            var response = await client.GetAsync(link);
+        //            var content = await response.Content.ReadAsStringAsync();
+        //            Models.Destiny2Bungie.Character.Root root = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.Destiny2Bungie.Character.Root>(content);
+
+        //            characters = root.Response.character;
+        //            //await Context.Channel.SendMessageAsync("", embed: embed);
+        //        }
+
+        //    return characters;
+        //}
 
     }
 }

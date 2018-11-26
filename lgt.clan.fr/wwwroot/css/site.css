@@ -1,4 +1,25 @@
-﻿html {
+﻿@font-face {
+    font-family: "Inversionz Unboxed";
+    src: url('../font/Inversionz Unboxed.ttf');
+}
+
+.float-left {
+    float: left;
+}
+
+.float-right {
+    float: right;
+}
+
+.clear-fix:after {
+    content: ".";
+    clear: both;
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+
+html {
     /*background: url("../images/design/body-bg.png") 50% 100% repeat-x #B5B5B5;*/
     background: #fff;
     margin: 0;
@@ -11,10 +32,11 @@
 }
 
 body {
-    background-color: #fff;
     color: #333;
+    background: url(../images/design/background-body.png) no-repeat center center #000;
+    /*background-repeat:no-repeat;*/
     /*font-size: .85em;*/
-    font-family: Arial, "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    /*font-family: Arial, "Segoe UI", Verdana, Helvetica, Sans-Serif;*/
     margin: 0;
     padding: 0;
     height: 100%;
@@ -34,7 +56,6 @@ body {
 
 #body {
     /*background: url("../images/design/body-bg.png") 50% 0% repeat-x #B5B5B5;*/
-    background: #fff;
     clear: both;
     padding-bottom: 300px;
     padding-top: 150px;
@@ -53,10 +74,10 @@ footer {
     height: 103px; /* Height of the footer */
 }
 
-footer p {
-    text-align: center;
-    font-size: 1.5em;
-}
+    footer p {
+        text-align: center;
+        font-size: 1.5em;
+    }
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
@@ -91,17 +112,17 @@ footer p {
     margin: 0;
 }
 
-.site-title a, .site-title a:hover, .site-title a:active {
-    background: url('../images/design/logo-bg.png') no-repeat;
-    color: #c8c8c8;
-    outline: none;
-    text-indent: -9999px;
-    float: left;
-    width: 150px;
-    height: 150px;
-    margin-top:3px;
-    text-decoration: none;
-}
+    .site-title a, .site-title a:hover, .site-title a:active {
+        background: url('../images/design/logo-bg.png') no-repeat;
+        color: #c8c8c8;
+        outline: none;
+        text-indent: -9999px;
+        float: left;
+        width: 150px;
+        height: 150px;
+        margin-top: 3px;
+        text-decoration: none;
+    }
 
 
 
@@ -234,9 +255,9 @@ button.btn-link:hover {
 /**** LOGIN ****/
 
 body#login {
-    background:url(../images/design/background-body-login.jpg) no-repeat center center #000;
+    background: url(../images/design/background-body-login.png) no-repeat center center #000;
     /*background-repeat:no-repeat;*/
-    color:#fff;
+    color: #fff;
 }
 
 #body-login {
@@ -245,7 +266,40 @@ body#login {
     padding-top: 150px;
 }
 
-html#login {background:none; }
+html#login {
+    background: none;
+}
+
+/***** Charactere *****/
+.CharactereClass {
+    /*max-width:300px;*/
+    /*max-height: 100px;*/
+    padding: 0px 10px 0px 65px;
+    margin: 20px 20px 20px 0;
+    color: #fff;
+    font-size: 15px;
+    height:70px;
+    font-weight: bold;
+}
+
+.CharactereClass .light {
+    color: #34cac4;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.CharactereClass .class {
+    padding-top:10px;
+}
+
+    .CharactereClass .race {
+        padding-bottom: 10px;
+    }
+
+    .CharactereClass .level {
+        padding-bottom: 10px;
+    }
+
 
 /* Hide/rearrange for smaller screens */
 @media screen and (max-width: 767px) {

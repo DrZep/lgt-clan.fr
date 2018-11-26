@@ -13,6 +13,7 @@ using lgt.clan.fr.Helpers;
 using lgt.clan.fr.Models.Destiny2Bungie;
 using lgt.clan.fr.Models.Destiny2Bungie.Profil;
 using lgt.clan.fr.Models.Destiny2Bungie.Character;
+using lgt.clan.fr.Models.Destiny2Bungie.Clan;
 
 namespace lgt.clan.fr.Controllers
 {
@@ -34,15 +35,22 @@ namespace lgt.clan.fr.Controllers
 
             Profile profile = new Profile();
             profile = await Destiny2BungieHelper.GetDestiny2ProfilById(profile, destinyMembershipId, _BungieApi.Value.apiKey);
+
             List<Character> characters = new List<Character>();
             characters = await Destiny2BungieHelper.GetDestiny2CaracteresById(profile, characters, _BungieApi.Value.apiKey);
+            characters.ForEach(x => x.GamerTag = profile.Data.UserInfo.displayName);
 
-            foreach(var charac in characters)
-            {
-                await Destiny2BungieHelper.GetDestiny2ActivitiesDoneByCharacterId(charac, _BungieApi.Value.apiKey);
-            }
+            profile.Characteres = characters;
+            Group group = new Group();
+            group = await Destiny2BungieHelper.GetDestiny2ClanByUser(profile, group, _BungieApi.Value.apiKey);
 
-            return View();
+            profile.Clan = group;
+            //foreach(var charac in characters)
+            //{
+            //    await Destiny2BungieHelper.GetDestiny2ActivitiesDoneByCharacterId(charac, _BungieApi.Value.apiKey);
+            //}
+
+            return View(profile);
         }
 
         public async Task<IActionResult> Test()

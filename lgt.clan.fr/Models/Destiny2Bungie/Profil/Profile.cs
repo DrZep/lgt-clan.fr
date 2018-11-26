@@ -10,6 +10,7 @@ namespace lgt.clan.fr.Models.Destiny2Bungie.Profil
     {
         [JsonProperty("data")]
         public Data Data { get; set; }
-        public lgt.clan.fr.Models.Destiny2Bungie.Character.Character Characteres { get; set; }
+        public List<lgt.clan.fr.Models.Destiny2Bungie.Character.Character> Characteres { get; set; }
+        public lgt.clan.fr.Models.Destiny2Bungie.Clan.Group Clan { get; set; }
     }
 }
