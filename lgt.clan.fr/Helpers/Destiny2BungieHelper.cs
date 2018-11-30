@@ -1,6 +1,7 @@
 ﻿using lgt.clan.fr.Models.Destiny2Bungie;
 using lgt.clan.fr.Models.Destiny2Bungie.Character;
 using lgt.clan.fr.Models.Destiny2Bungie.Clan;
+using lgt.clan.fr.Models.Destiny2Bungie.Manifest;
 using lgt.clan.fr.Models.Destiny2Bungie.Profil;
 using lgt.clan.fr.Settings;
 using Microsoft.Extensions.Options;
@@ -60,6 +61,7 @@ namespace lgt.clan.fr.Helpers
                     Character character = new Character();
                     client.DefaultRequestHeaders.Add("X-API-Key", apiKey);
                     string link = apiSite + $"/Destiny2/{membershipType}/Profile/{profile.Data.UserInfo.membershipId}/Character/{id}/?components=100,200";
+                    //string link = apiSite + $"/Destiny2/Milestones/";
 
                     var response = await client.GetAsync(link);
                     var content = await response.Content.ReadAsStringAsync();
@@ -108,6 +110,28 @@ namespace lgt.clan.fr.Helpers
 
         //    return characters;
         //}
+
+        #region GetSqlLite
+        //http://www.bungie.net/platform/Destiny/Manifest/
+        public static async Task<MobileWorldContentPaths> GetDestiny2Manifests(string apiKey)
+        {
+            MobileWorldContentPaths mobileWorldContentPaths = new MobileWorldContentPaths();
+
+            using (var client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Add("X-API-Key", apiKey);
+                string link = "http://www.bungie.net/platform/Destiny/Manifest/";
+
+                var response = await client.GetAsync(link);
+                var content = await response.Content.ReadAsStringAsync();
+                Models.Destiny2Bungie.Manifest.Root root = Newtonsoft.Json.JsonConvert.DeserializeObject<Models.Destiny2Bungie.Manifest.Root>(content);
+
+                mobileWorldContentPaths = root.Response.MobileWorldContentPaths;
+            }
+
+            return mobileWorldContentPaths;
+        }
+        #endregion
 
     }
 }

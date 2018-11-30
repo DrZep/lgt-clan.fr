@@ -9,7 +9,7 @@
 <hr />
 
 <h2>@Model.Data.UserInfo.displayName</h2>
-<h2>Clan \\ @Model.Clan.Name</h2>
+<h2>Clan // @Model.Clan.Name</h2>
 
 <hr />
 
@@ -17,25 +17,31 @@
 
 
 <div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4"></div>
     <div class="col-md-4">
         @foreach (var item in Model.Characteres)
             {
             <div class="CharactereClass" style="background:url('http://www.bungie.net/@item.data.EmblemBackgroundPath') no-repeat; background-size: 100% auto;">
-                @*<img src="http://www.bungie.net/@item.data.EmblemPath" alt="@item.data.Class" name="@item.data.Class" />*@
+                <img src="http://www.bungie.net/@item.data.EmblemPath" alt="@item.data.Class" name="@item.data.Class" class="img-emblem" />
+
                 <div class="text-top">
                     <p class="float-left class">@Html.DisplayFor(modelItem => item.data.Class)</p>
                     <p class="float-right light"><b style="font-size:15px;">&#x25C7;</b> @Html.DisplayFor(modelItem => item.data.Light)</p>
                 </div>
-               
-                <div class="clear-fix"></div>
 
-                <div class="text-bot">
-                    <p class="float-left race">Exo</p>
-                    <p class="float-right level">Niveau 20</p>
-                </div>
+                <div class="text-top">
+                    <p class="float-left race">@Html.DisplayFor(modelItem => item.data.Race)</p>
+                    <p class="float-right level">Niveau @Html.DisplayFor(modelItem => item.data.levelProgression.Level)</p>
+                </div>         
             </div>
         }
+    </div>
+    <div class="col-md-4">
+        <div class="jalon-pve">
+            <h4>Jalons PVE</h4>
+            <
+        </div>
+    </div>
+    <div class="col-md-4">
+
     </div>
 </div>

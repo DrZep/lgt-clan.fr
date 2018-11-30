@@ -21,7 +21,7 @@
 
 html {
     /*background: url("../images/design/body-bg.png") 50% 100% repeat-x #B5B5B5;*/
-    background: #fff;
+    /*background: #fff;*/
     margin: 0;
     padding: 0;
     height: 100%;
@@ -33,7 +33,7 @@ html {
 
 body {
     color: #333;
-    background: url(../images/design/background-body.png) no-repeat center center #000;
+    background: url(../images/design/background-body.png);
     /*background-repeat:no-repeat;*/
     /*font-size: .85em;*/
     /*font-family: Arial, "Segoe UI", Verdana, Helvetica, Sans-Serif;*/
@@ -58,7 +58,7 @@ body {
     /*background: url("../images/design/body-bg.png") 50% 0% repeat-x #B5B5B5;*/
     clear: both;
     padding-bottom: 300px;
-    padding-top: 150px;
+    /*padding-top: 150px;*/
 }
 
 footer {
@@ -274,12 +274,23 @@ html#login {
 .CharactereClass {
     /*max-width:300px;*/
     /*max-height: 100px;*/
-    padding: 0px 10px 0px 65px;
-    margin: 20px 20px 20px 0;
+    /*padding: 0px 10px 0px 65px;*/
+    margin: 0px 15px 20px 0;
     color: #fff;
     font-size: 15px;
     height:70px;
     font-weight: bold;
+}
+
+.CharactereClass .img-emblem {
+    height:100%;
+    float:left;
+}
+
+.CharactereClass .text-top {
+    float: left;
+    height: 50%;
+    width: 75%;
 }
 
 .CharactereClass .light {
@@ -289,16 +300,16 @@ html#login {
 }
 
 .CharactereClass .class {
-    padding-top:10px;
+    padding-top:7px;
 }
 
-    .CharactereClass .race {
-        padding-bottom: 10px;
-    }
+.CharactereClass .race {
+    padding-bottom: 5px;
+}
 
-    .CharactereClass .level {
-        padding-bottom: 10px;
-    }
+.CharactereClass .level {
+    padding-bottom: 10px;
+}
 
 
 /* Hide/rearrange for smaller screens */

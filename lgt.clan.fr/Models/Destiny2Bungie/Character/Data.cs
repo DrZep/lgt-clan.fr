@@ -29,6 +29,14 @@ namespace lgt.clan.fr.Models.Destiny2Bungie.Character
         //public int[] Stats { get; set; }
         [JsonProperty("raceType")]
         public DestinyRaceEnum RaceType { get; set; }
+        [JsonIgnore, NotMapped]
+        public string Race
+        {
+            get
+            {
+                return RaceType.GetDescription();
+            }
+        }
         [JsonProperty("classType")]
         public DestinyClassEnum ClassType { get; set; }
         [JsonIgnore, NotMapped]
@@ -46,6 +54,9 @@ namespace lgt.clan.fr.Models.Destiny2Bungie.Character
         public string EmblemPath { get; set; }
         [JsonProperty("emblemBackgroundPath")]
         public string EmblemBackgroundPath { get; set; }
+
+        [JsonProperty("levelProgression")]
+        public LevelProgression levelProgression { get; set; }
         #region enum
         public enum DestinyRaceEnum
         {

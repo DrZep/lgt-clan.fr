@@ -45,6 +45,10 @@ namespace lgt.clan.fr.Controllers
             group = await Destiny2BungieHelper.GetDestiny2ClanByUser(profile, group, _BungieApi.Value.apiKey);
 
             profile.Clan = group;
+
+
+            var test = ManifestHelper.LoadManifest(_BungieApi.Value.apiKey);
+
             //foreach(var charac in characters)
             //{
             //    await Destiny2BungieHelper.GetDestiny2ActivitiesDoneByCharacterId(charac, _BungieApi.Value.apiKey);
